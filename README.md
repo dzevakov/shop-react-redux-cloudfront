@@ -3,7 +3,7 @@
 [CloudFront](https://dgod361p6oftm.cloudfront.net/)
 
 ### S3-website
-[S3-website](https://shop-react-redux-cloudfront-zevakou.s3.amazonaws.com/index.html)
+[S3-website](http://shop-react-redux-cloudfront-zevakou.s3-website-us-east-1.amazonaws.com)
 
 # React-shop-cloudfront
 
