@@ -1,17 +1,33 @@
 import axios, { AxiosError } from "axios";
 import API_PATHS from "~/constants/apiPaths";
-import { AvailableProduct } from "~/models/Product";
+import { AvailableProduct, Product, Stock } from "~/models/Product";
 import { useQuery, useQueryClient, useMutation } from "react-query";
 import React from "react";
+
+export interface IAvailableProducts {
+  products: Product[];
+  stocks: Stock[];
+}
 
 export function useAvailableProducts() {
   return useQuery<AvailableProduct[], AxiosError>(
     "available-products",
     async () => {
-      const res = await axios.get<AvailableProduct[]>(
+      const res = await axios.get<IAvailableProducts>(
         `${API_PATHS.products}/products`
       );
-      return res.data;
+
+      const productsList = res.data.products;
+      const stocksList = res.data.stocks;
+
+      const availableProducts = productsList.map((product) => {
+        return {
+          ...product,
+          count: stocksList?.find((stock) => stock.id === product.id)?.count,
+        };
+      }) as AvailableProduct[];
+
+      return availableProducts;
     }
   );
 }
@@ -48,10 +64,10 @@ export function useRemoveProductCache() {
 
 export function useUpsertAvailableProduct() {
   return useMutation((values: AvailableProduct) =>
-    axios.put<AvailableProduct>(`${API_PATHS.bff}/product`, values, {
-      headers: {
-        Authorization: `Basic ${localStorage.getItem("authorization_token")}`,
-      },
+    axios.put<AvailableProduct>(`${API_PATHS.products}/products`, values, {
+      // headers: {
+      //   Authorization: `Basic ${localStorage.getItem("authorization_token")}`,
+      // },
     })
   );
 }
