@@ -5,6 +5,12 @@
 ### S3-website
 [S3-website](http://shop-react-redux-cloudfront-zevakou.s3-website-us-east-1.amazonaws.com)
 
+### Create Function URL
+[createProduct](https://8jduv2iljh.execute-api.us-east-1.amazonaws.com/products)
+
+### getProductsList Function URL
+[getProductsList](https://8jduv2iljh.execute-api.us-east-1.amazonaws.com/products)
+
 # React-shop-cloudfront
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:

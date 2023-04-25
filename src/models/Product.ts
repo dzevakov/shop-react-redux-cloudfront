@@ -7,9 +7,15 @@ export const ProductSchema = Yup.object({
   price: Yup.number().positive().required().defined().default(0),
 });
 
+export const StockSchema = Yup.object({
+  id: Yup.string(),
+  count: Yup.number().positive().required().defined().default(0),
+});
+
 export const AvailableProductSchema = ProductSchema.shape({
   count: Yup.number().integer().min(0).required().defined().default(0),
 });
 
 export type Product = Yup.InferType<typeof ProductSchema>;
+export type Stock = Yup.InferType<typeof StockSchema>;
 export type AvailableProduct = Yup.InferType<typeof AvailableProductSchema>;
