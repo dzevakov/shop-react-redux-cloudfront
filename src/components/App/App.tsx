@@ -9,6 +9,13 @@ import PageProducts from "~/components/pages/PageProducts/PageProducts";
 import { Typography } from "@mui/material";
 
 function App() {
+  const userData = {
+    user: "dzevakov",
+    pw: "TEST_PASSWORD",
+  };
+
+  localStorage.setItem("auth", JSON.stringify(userData));
+
   return (
     <MainLayout>
       <Routes>
